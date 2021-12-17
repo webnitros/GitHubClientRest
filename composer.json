@@ -10,12 +10,8 @@
     }
   ],
   "require": {
-    "php": ">=7.2",
     "milo/github-api": "^1.4",
-    "upstreamable/md-to-html": "^1.1",
     "erusev/parsedown": "^1.7",
-    "voku/html-min": "^4.4",
-    "symfony/finder": "^4 || ^5",
     "guzzlehttp/guzzle": "~6.0",
     "symfony/dotenv": "^5.2"
   },
