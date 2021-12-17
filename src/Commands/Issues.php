@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by Andrey Stepanenko.
- * User: webnitros
- * Date: 17.12.2021
- * Time: 20:44
+ * Разбират масси для удобного чтения
  */
 
 namespace GitHubClientRest\Commands;
