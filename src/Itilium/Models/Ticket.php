@@ -29,6 +29,7 @@ class Ticket
     {
         return $this->createdAt;
     }
+
     public function setCreatedAt($value)
     {
         $this->createdAt = $value;
@@ -94,19 +95,20 @@ class Ticket
     public function body($email = false)
     {
 
-        $body = '';
-        if ($email) {
+        $body = $this->body;
+        if ($email && !empty($body)) {
+            $Parsedown = new Parsedown();
+            $body = $Parsedown->text($body);
+            if (empty($body)) {
+                $body = $this->subject();
+            }
+
             $milestone = $this->milestone();
             if (!empty($milestone)) {
-                $body .= '<h3>' . $milestone . '</h3><br>';
+                $body = '<h3>' . $milestone . '</h3><br>' . $body;
             }
-        }
-        $Parsedown = new Parsedown();
-        $body .= $Parsedown->text($this->body);
-        if (empty($body)) {
-            $body = $this->subject();
-        }
-        if ($email) {
+
+
             $label = $this->label();
             if (!empty($label)) {
                 $body .= '<hr><br>' . implode(',', $label);
