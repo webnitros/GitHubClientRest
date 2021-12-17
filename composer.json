@@ -1,0 +1,28 @@
+{
+  "name": "webnitros/githubclient",
+  "description": "Клиент для управления issues github через rest",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Andrey Stepanenko",
+      "email": "info@bustep.ru"
+    }
+  ],
+  "require": {
+    "php": ">=7.3",
+    "milo/github-api": "^1.4",
+    "upstreamable/md-to-html": "^1.1",
+    "erusev/parsedown": "^1.7",
+    "voku/html-min": "^4.4",
+    "symfony/finder": "^4 || ^5",
+    "guzzlehttp/guzzle": "~6.0",
+    "symfony/dotenv": "^5.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "GitHubClientRest\\": "src/",
+      "GitHubClientRest\\Tests\\": "tests/"
+    }
+  }
+}
