@@ -13,9 +13,7 @@ class Issues extends Rest
 {
     public function getList()
     {
-        $org = $this->user()->org();
-        $response = $this->request('orgs/' . $org . '/issues');
-        return $response;
+        return $this->request('orgs/{owner}/issues');
     }
 
     public function open($id)

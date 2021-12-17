@@ -67,62 +67,15 @@ class Ticket
         return $this;
     }
 
-    public function subject($isTo = false)
+    public function subject()
     {
-        $subject = $this->subject;
-        if ($isTo) {
-            $to = $this->externalUserId();
-            $users = null;
-            $tms = getenv('FDK_GITHUB_USERS');
-            if (!empty($tms)) {
-                $tmp = explode(',', $tms);
-                if (!empty($tmp)) {
-                    foreach ($tmp as $user) {
-                        list($id, $lastmane) = explode(':', $user);
-                        $users[$id] = $lastmane;
-                    }
-                }
-            }
-
-            if ($users && array_key_exists($to, $users)) {
-                $subject .= ' #' . $users[$to];
-            };
-            $subject .= ' ' . $this->number($isTo);
-        }
-        return $subject;
+        return $this->subject;
     }
 
-    public function body($email = false)
+    public function body()
     {
 
-        $body = $this->body;
-        if ($email && !empty($body)) {
-            $Parsedown = new Parsedown();
-            $body = $Parsedown->text($body);
-            if (empty($body)) {
-                $body = $this->subject();
-            }
-
-            $milestone = $this->milestone();
-            if (!empty($milestone)) {
-                $body = '<h3>' . $milestone . '</h3><br>' . $body;
-            }
-
-
-            $label = $this->label();
-            if (!empty($label)) {
-                $body .= '<hr><br>' . implode(',', $label);
-            }
-
-            $url = $this->url();
-            $body .= '<br>Ссылка на вопрос: ' . $url;
-            $number = $this->number($email);
-            if (!empty($number)) {
-                $body .= '<br>' . $number;
-            }
-
-        }
-        return $body;
+        return $this->body;
     }
 
     public function lables()
@@ -135,14 +88,10 @@ class Ticket
         return $this->url;
     }
 
-    public function number($email = false)
+    public function number()
     {
-        $number = $this->number;
-        if ($email && !empty($number)) {
-            $type = $this->type();
-            return 'Github #' . $type . ':' . $number;
-        }
-        return $number;
+        return $this->number;
+
     }
 
     public function label()
@@ -155,7 +104,7 @@ class Ticket
         return $this->external_user_id;
     }
 
-    public function toArray($email = false)
+    public function toArray()
     {
         return [
             'external_id' => $this->externalId(),
@@ -167,8 +116,8 @@ class Ticket
             'number' => $this->number(),
             'url' => $this->url(),
             'label' => $this->label(),
-            'subject' => $this->subject($email),
-            'body' => $this->body($email),
+            'subject' => $this->subject(),
+            'body' => $this->body(),
         ];
     }
 
