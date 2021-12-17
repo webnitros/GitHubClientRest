@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "php": ">=7.3",
+    "php": ">=7.2",
     "milo/github-api": "^1.4",
     "upstreamable/md-to-html": "^1.1",
     "erusev/parsedown": "^1.7",
